@@ -61,8 +61,13 @@ Front end frameworks use this pattern a lot. Like a panel that holds a grid and 
 Composite is aligned with OCP principle.
 It's not possbile to restrict operations with type. Run-time check is needed.
 
+### Adding an opperation ###
+We might need to add operation to nodes of our composite structure, traverse it or change it's structure.
+
+### Building composite structures ###
+
 ---------------
-### Specification Pattern### 
+### Specification Pattern ### 
 Specification is an abstraction to check some criteria on candidates. It is good for reusability of predicates and decouples predicates from objects.  
 
 Use cases
@@ -73,10 +78,21 @@ Use cases
 Types of specification:
 Hard coded specification → AdultSpec: age> 10
 Parametrized specification (more abstract) → AgeSpec: age > inputeAge
-Composite specification
+Composite specification (it's a binary tree!)
 
 Hard coded specs are more expressive. Parametrized specs are more flexible. In both, our specs are dependent on the object (candid) and it's parameter(s). We can make it more general, but it gets complex.
 **Do not refactor all ifs to specs.** ask yourself:
 * Is it the case that knowledge of these are being used at different places? (e.g. in query and validation)
 * Does decoupling these specs makes my design robust to change?
 * Do we have different composition of these ifs in different situations?
+
+---------------
+### Builder ###
+* Builder with director  
+This is the original builder pattern in GOF that we don't use much these days. It goes right with the intent of builder, quoting from GOF, it is to *"Separate the construction of a complex object from its representation so that the same construction process can create different representations"*.
+The idea is that we might have different representations of an object. Builder let us add these different representations with implementing the same abstraction, and letting the client decide which implementation to use. The client pass it's desired implementation to a *director*. This *director* uses the builder contract to create an object step by step for the client.   
+Example: When we want to create a document, and we can create it in HTML format, in CSV format, etc. The steps to create this document are the same (add header, add body, add title, etc.). So we create a builder for each representation, and the director calls the steps of that builder abstraction.  
+* Simple builder  
+This is the builder we are most familiar with. This way of implementation of builder pattern helps us with construction of a complex object. We can chain builders or create step builders that control order of method calls. 
+
+Examples are in code base.
