@@ -1,11 +1,12 @@
-﻿using DesignPatternExamples.Composite;
+﻿using System.Reflection.Metadata;
+using DesignPatternExamples.Composite;
 using Xunit;
 using Directory = DesignPatternExamples.Composite.Directory;
 using File = DesignPatternExamples.Composite.File;
 
 namespace DesignPatternsExamples.Tests
 {
-    public class Tests
+    public class CompositeTests
     {
         [Fact]
         public void Get_Size_Of_A_File_System_Item()
