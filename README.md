@@ -62,7 +62,8 @@ Composite is aligned with OCP principle.
 It's not possbile to restrict operations with type. Run-time check is needed.
 
 ### Adding an opperation ###
-We might need to add operation to nodes of our composite structure, traverse it or change it's structure.
+We might need to add operation to nodes of our composite structure, traverse it or change its structure.
+Adding operation to a composite structure has different methods. One way is to put the operation on the shared interface between leaf and parent (e.g. *Add*). That way, the child and parent maintain transparency from the client perspective. Client treats them both the same way. But it has a drawback. This generalization is not correct, and child methods are forced to implement methods that do not belong to them. The client can call these methods on the leaf node and cause an issue. This is a violation of LSP principle. So there is a trade-off between safety and transparency.
 
 ### Building composite structures ###
 
