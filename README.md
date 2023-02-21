@@ -94,6 +94,7 @@ This is the original builder pattern in GOF that we don't use much these days. I
 The idea is that we might have different representations of an object. Builder let us add these different representations with implementing the same abstraction, and letting the client decide which implementation to use. The client pass it's desired implementation to a *director*. This *director* uses the builder contract to create an object step by step for the client.   
 Example: When we want to create a document, and we can create it in HTML format, in CSV format, etc. The steps to create this document are the same (add header, add body, add title, etc.). So we create a builder for each representation, and the director calls the steps of that builder abstraction.  
 * Simple builder  
-This is the builder we are most familiar with. This way of implementation of builder pattern helps us with construction of a complex object. We can chain builders or create step builders that control order of method calls. 
+This is the builder we are most familiar with. This way of implementation of builder pattern helps us with construction of a complex object. We can chain builders or create step builders that control order of method calls. Sometimes because creation of an object has different ways and parameters, we can't use factory, since then we must write multiple overloads with different parameters. In that case, simple builder helps us. 
 
-Examples are in code base.
+Examples are in code base.  
+
