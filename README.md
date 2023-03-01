@@ -98,3 +98,13 @@ This is the builder we are most familiar with. This way of implementation of bui
 
 Examples are in code base.  
 
+---------------
+### Visitor ###
+Intent: Represent an operation to be performed on the elements of an abject structure. Visitor lets you define a new operation without changing the classes of the elements in which it operates.  
+For example, in a composite structure, you want to add an operation without changing the node class. These operations are distinct and unrelated. 
+
+Multiple Dispatch:
+According to the Wikipedia, multiple dispatch or multimethods is a feature of some programming languages in which a function or method can be dynamically dispatched based on the run-time (dynamic) type or, in the more general case, some other attribute of more than one of its arguments.
+For example, we have an abstract class called *Shape*, and it has three subclasses, *Square*, *Rectangle* and *Circle*. We also have a *Board* class which has 3 draw methods, and each method takes either Square, Rectangle or Circle. In C# if I call this draw method and give it a Shape reference instance (which will be one of the subtypes, but that subtype will be known to the compiler at run time, I will get an error. Because this way compiler can not choose which function to call. To achieve multidispatch, we use the keyword *dynamic*.  
+
+Visitor uses some sort of multiple dispatch which is called double dispatch to add behaviour to an structure of elements (like a tree of root and child objects in a composite structure). Example is in codes.
