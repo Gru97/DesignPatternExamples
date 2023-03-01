@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using DesignPatternExamples.Builder.BuilderForComposite;
 using DesignPatternExamples.Builder.NestedBuilder;
 using DesignPatternExamples.Builder.StepBuilder;
 using FluentAssertions;
@@ -48,4 +49,20 @@ public class BuilderTests
         individualMerchant.Name.Should().Be("jack");
 
     }
+
+    [Fact]
+    public void Create_SalesUnit()
+    {
+        var hierarchy = new SalesGroupBuilder()
+            .WithGroup("group1")
+                .WithMember("member1")
+                        .WithGroup("sub-group2")
+            //                .WithMember("sub-member2")
+            //.WithMember("member2")
+            .Build();
+
+        var x = 0;
+    }
 }
+
+
