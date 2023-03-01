@@ -94,6 +94,17 @@ This is the original builder pattern in GOF that we don't use much these days. I
 The idea is that we might have different representations of an object. Builder let us add these different representations with implementing the same abstraction, and letting the client decide which implementation to use. The client pass it's desired implementation to a *director*. This *director* uses the builder contract to create an object step by step for the client.   
 Example: When we want to create a document, and we can create it in HTML format, in CSV format, etc. The steps to create this document are the same (add header, add body, add title, etc.). So we create a builder for each representation, and the director calls the steps of that builder abstraction.  
 * Simple builder  
-This is the builder we are most familiar with. This way of implementation of builder pattern helps us with construction of a complex object. We can chain builders or create step builders that control order of method calls. 
+This is the builder we are most familiar with. This way of implementation of builder pattern helps us with construction of a complex object. We can chain builders or create step builders that control order of method calls. Sometimes because creation of an object has different ways and parameters, we can't use factory, since then we must write multiple overloads with different parameters. In that case, simple builder helps us. 
 
-Examples are in code base.
+Examples are in code base.  
+
+---------------
+### Visitor ###
+Intent: Represent an operation to be performed on the elements of an abject structure. Visitor lets you define a new operation without changing the classes of the elements in which it operates.  
+For example, in a composite structure, you want to add an operation without changing the node class. These operations are distinct and unrelated. 
+
+Multiple Dispatch:
+According to the Wikipedia, multiple dispatch or multimethods is a feature of some programming languages in which a function or method can be dynamically dispatched based on the run-time (dynamic) type or, in the more general case, some other attribute of more than one of its arguments.
+For example, we have an abstract class called *Shape*, and it has three subclasses, *Square*, *Rectangle* and *Circle*. We also have a *Board* class which has 3 draw methods, and each method takes either Square, Rectangle or Circle. In C# if I call this draw method and give it a Shape reference instance (which will be one of the subtypes, but that subtype will be known to the compiler at run time, I will get an error. Because this way compiler can not choose which function to call. To achieve multidispatch, we use the keyword *dynamic*.  
+
+Visitor uses some sort of multiple dispatch which is called double dispatch to add behaviour to an structure of elements (like a tree of root and child objects in a composite structure). Example is in codes.
